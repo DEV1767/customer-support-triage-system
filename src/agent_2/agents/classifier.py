@@ -6,8 +6,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_URL = "https://openrouter.ai/api/alpha/decisions"
-MODEL = os.getenv("JEV_MODEL", "typesafe/jev-1.13-20260917")
+API_URL = os.getenv("API_URL", "https://openrouter.ai/api/alpha/decisions")
+MODEL = os.getenv("OPENROUTER_MODEL") or os.getenv("JEV_MODEL", "typesafe/jev-1.13-20260917")
 API_KEY = os.getenv("OPENROUTER_API_KEY")
 
 THRESHOLD = 0.6

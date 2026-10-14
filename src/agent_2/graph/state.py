@@ -1,12 +1,11 @@
-from typing import TypeDict,Optional
+from typing import TypedDict, Optional
 
-class TicketState(TypeDict):
-    ticket:str
-    category:Optional[str]
-    confidence:Optional[str]
-    reasoning:Optional[str]
-    sentiments:Optional[str]
-    route:Optional[str]
-    responce:Optional[str]
-    need_human:bool
-    
+class TicketState(TypedDict):
+    ticket: str
+    category: Optional[str]
+    confidence: Optional[float]
+    reasoning: Optional[str]
+    sentiment: Optional[str]
+    route: Optional[str]
+    response: Optional[str]
+    needs_human: bool
