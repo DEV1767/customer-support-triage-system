@@ -9,3 +9,14 @@
 - **Status:** Requires human review
 
 ---
+
+## Support Ticket
+
+- **Ticket:** I am extremely angry. Nobody has resolved my problem.
+- **Category:** general
+- **Confidence:** 0.97
+- **Sentiment:** angry
+- **Reasoning:** JEV category scores: {'billing': 0.0, 'tech': 0.0, 'general': 0.97}. Selected category: general. Classification confidence: 0.97.
+- **Status:** Requires human review
+
+---
