@@ -1,11 +1,35 @@
 from pathlib import Path
 from agent_2.graph.state import TicketState
+from agent_2.tools.get_order import get_order,extract_order_id
 
 def billing_agent(state: TicketState) -> dict:
     ticket = state["ticket"]
 
-    response = f"Billing request received: {ticket}"
+    order_id=extract_order_id(ticket)
 
+    if not  order_id:
+        return {
+            "responce":"Please provide your order ID",
+            "route":"billing_agent",
+            "needs_human":False,
+        }
+
+    result=get_order(order_id)
+
+    if not result["success"]:
+        return {
+            "response": result["message"],
+            "route": "billing_agent",
+            "needs_human": False,
+        }
+
+    order = result["order"]
+
+    response = (
+        f"Order ID: {order['order_id']}\n"
+        f"Amount: {order['currency']} {order['amount']}\n"
+        f"Status: {order['status']}"
+    )
     return {
         "response": response,
         "route": "billing_agent",

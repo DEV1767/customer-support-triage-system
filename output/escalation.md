@@ -20,3 +20,25 @@
 - **Status:** Requires human review
 
 ---
+
+## Support Ticket
+
+- **Ticket:** Please check the status of order ORD1001.
+- **Category:** general
+- **Confidence:** 1.0
+- **Sentiment:** calm
+- **Reasoning:** JEV category scores: {'billing': 0.0, 'tech': 0.0, 'general': 1.0}. Selected category: general. Classification confidence: 1.00.
+- **Status:** Requires human review
+
+---
+
+## Support Ticket
+
+- **Ticket:** ORD1001
+- **Category:** general
+- **Confidence:** 0.67
+- **Sentiment:** calm
+- **Reasoning:** JEV category scores: {'billing': 0.01, 'tech': 0.01, 'general': 0.67}. Selected category: general. Classification confidence: 0.67.
+- **Status:** Requires human review
+
+---

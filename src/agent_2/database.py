@@ -7,9 +7,9 @@ load_dotenv()
 
 
 MONGO_URL=os.getenv("MONGO_URL")
-DATABASE_NAME=os.getenv(
+DATABASE_NAME = os.getenv(
     "MONGODB_DATABASE",
-    "customer_sopport",
+    "customer_support",
 )
 
 if not  MONGO_URL:

@@ -1,4 +1,14 @@
-from agent_2.database import check_connection
+from agent_2.tools.get_order import extract_order_id
 
-if check_connection():
-    print("MongoDB connected successfully!")
+tickets = [
+    "Please refund order ORD1001.",
+    "Can you check ORD1002?",
+    "I need a refund for my purchase.",
+]
+
+for ticket in tickets:
+    order_id = extract_order_id(ticket)
+
+    print(f"Ticket: {ticket}")
+    print(f"Order ID: {order_id}")
+    print("-" * 40)
