@@ -1,6 +1,8 @@
-from pathlib import Path
+import uuid
 from agent_2.graph.state import TicketState
 from agent_2.tools.get_order import get_order,extract_order_id
+from agent_2.tools.save_escalations import save_order
+
 
 def billing_agent(state: TicketState) -> dict:
     ticket = state["ticket"]
@@ -48,24 +50,26 @@ def tech_agent(state: TicketState) -> dict:
     }
 
 def human_escalation(state: TicketState) -> dict:
-    output_dir = Path("output")
-    output_dir.mkdir(parents=True, exist_ok=True)
-
-    file_path = output_dir / "escalation.md"
-
-    with file_path.open("a", encoding="utf-8") as file:
-        file.write(
-            f"\n## Support Ticket\n\n"
-            f"- **Ticket:** {state['ticket']}\n"
-            f"- **Category:** {state['category']}\n"
-            f"- **Confidence:** {state['confidence']}\n"
-            f"- **Sentiment:** {state['sentiment']}\n"
-            f"- **Reasoning:** {state['reasoning']}\n"
-            f"- **Status:** Requires human review\n\n---\n"
-        )
+    """Escalate a support ticket and save it to MongoDB."""
     
+    ticket_id=f"TKT-{uuid.uuid4().hex[:8].upper()}"
+
+    if state["sentiment"]=="angry":
+        reason="angry_customer"
+    elif state["confidence"]<0.6:
+        reason="low_classification_confidence"
+    elif state["category"]=="general":
+        reason="general_category"
+    else:
+        reason="require_human_review"
+    
+    escalation_id=save_order(state,reason,ticket_id)
+
     return {
-        "response": "Your ticket has been escalated to human Support.",
+          "response": (
+            "Your ticket has been escalated to human support "
+            "for further review."
+        ),
         "route": "human_escalation",
-        "needs_human": True
+        "needs_human": True,
     }

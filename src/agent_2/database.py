@@ -25,6 +25,7 @@ db=client[DATABASE_NAME]
 
 orders_collection = db["orders"]
 refunds_collection = db["refunds"]
+escalations_collection=db["escalations_collection"]
 
 
 def check_connection() -> bool:
